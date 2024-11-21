@@ -1,0 +1,90 @@
+// Toggle sidebar
+function toggleSidebar() {
+  document.body.classList.toggle("sidebar-open");
+}
+
+// Initialize the carousel with a 2-second interval
+document.addEventListener("DOMContentLoaded", function () {
+  $(".carousel").carousel({
+    interval: 2000,
+    ride: "carousel",
+  });
+
+  // Add smooth scroll to sidenav links
+  const navLinks = document.querySelectorAll(".sidenav-link");
+  navLinks.forEach((link) => {
+    link.addEventListener("click", function (event) {
+      const targetId = link.getAttribute("href").slice(1);
+      const targetSection = document.getElementById(targetId);
+
+      if (targetSection) {
+        targetSection.scrollIntoView({
+          behavior: "smooth",
+        });
+      }
+    });
+  });
+
+  // Add event listener for scroll to reduce scrollbar width
+  window.addEventListener("scroll", function () {
+    document.body.classList.add("scrolling");
+    clearTimeout(window.scrollTimeout);
+    window.scrollTimeout = setTimeout(function () {
+      document.body.classList.remove("scrolling");
+    }, 100);
+  });
+});
+
+//Feedback Section
+const scriptURL =
+  "https://script.google.com/macros/s/AKfycbxh-8CHeL8EitmvX5rb5rSrvFwykHSF-rGGoQbunHmV651Nu3nfxi63C3X-fSzuMTUs/exec";
+const form = document.forms["Feedback"];
+const responseDiv = document.getElementById("response");
+
+async function submitForm(form) {
+  try {
+    const response = await fetch(scriptURL, {
+      method: "POST",
+      body: new FormData(form),
+    });
+    if (!response.ok) throw new Error("Failed to submit the form");
+    return response;
+  } catch (error) {
+    throw error;
+  }
+}
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  responseDiv.className = "response-message submitting";
+  responseDiv.innerHTML = "<h3>Submitting your form...</h3>";
+
+  const name = document.getElementById("name").value;
+  const phone = document.getElementById("phone").value;
+  const email = document.getElementById("email").value;
+  const message = document.getElementById("message").value;
+
+  try {
+    const response = await submitForm(form);
+
+    responseDiv.className = "response-message success";
+    responseDiv.innerHTML = `
+      <h3>Form Submitted Successfully</h3>
+      <p><strong>Name:</strong> ${name}</p>
+      <p><strong>Phone:</strong> ${phone}</p>
+      <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Message:</strong> ${message}</p>
+    `;
+
+    form.reset();
+
+    setTimeout(() => (responseDiv.innerHTML = ""), 20000);
+  } catch (error) {
+    responseDiv.className = "response-message error";
+    responseDiv.innerHTML = `
+      <h3>Failed to Submit Form</h3>
+      <p>Please try again later.</p>
+    `;
+  }
+});

@@ -1,0 +1,573 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* General Reset */
+/* Smooth Scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Reduce scrollbar width when user scrolls */
+body {
+  font-family: Arial, sans-serif;
+  color: #333;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Customize the width of the scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 12px;
+}
+
+/* Customize the background of the scrollbar */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Customize the color of the draggable part of the scrollbar */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+/* Customize the hover effect for the scrollbar thumb */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Header */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 15px;
+  z-index: 1000;
+}
+
+header h1 {
+  color: white;
+  font-size: 1.5rem;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.hamburger {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 18px;
+  width: 25px;
+}
+
+.hamburger span {
+  display: block;
+  height: 3px;
+  background-color: white;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Sidebar */
+#sidebar {
+  position: fixed;
+  top: 55px;
+  left: -220px;
+  width: 220px;
+  height: 100%;
+  background-color: #111;
+  color: white;
+  transition: left 0.3s ease;
+  z-index: 999;
+}
+
+#sidebar ul {
+  list-style: none;
+  padding: 20px;
+}
+
+#sidebar ul li {
+  margin-bottom: 20px;
+}
+
+#sidebar ul li a {
+  text-decoration: none;
+  color: white;
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+}
+
+#sidebar ul li:hover {
+  border-radius: 5px;
+  transform: scale(1.02);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#sidebar ul li a:hover {
+  color: #f8b400;
+}
+
+/* Sidebar Open Class */
+.sidebar-open #sidebar {
+  left: 0;
+}
+
+.sidebar-open main {
+  margin-left: 220px;
+}
+
+.sidebar-open .hamburger span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.sidebar-open .hamburger span:nth-child(2) {
+  opacity: 0;
+}
+
+.sidebar-open .hamburger span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Main Content */
+main {
+  margin-left: 0;
+  transition: margin-left 0.3s ease;
+}
+
+main section {
+  margin-bottom: 40px;
+}
+
+main section h2 {
+  font-size: 1.8rem;
+}
+
+/* Home Section */
+#home {
+  height: 85vh;
+  position: relative;
+  overflow: hidden;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  margin-top: 2rem;
+}
+
+.carousel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.carousel-inner {
+  height: 100%;
+}
+
+.carousel-item {
+  height: 100%;
+}
+
+.carousel-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Control Buttons */
+.carousel-control-prev,
+.carousel-control-next {
+  width: 5%;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+}
+
+/* Chef's Special Section */
+#specials {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+  background-color: #ffffff;
+}
+
+#specials .special-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1.5rem;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#specials img {
+  width: 80%;
+  max-width: 400px;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+#specials img:hover {
+  border-radius: 5px;
+  transform: scale(1.02);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#specials h3 {
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+#specials p {
+  color: #555;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  line-height: 1.4;
+}
+
+#specials .chefs {
+  font-weight: bold;
+  font-size: 2.5rem;
+  margin-top: 3rem;
+}
+
+/* Menu Section Styling */
+#menu {
+  padding: 3rem 0;
+  background-color: #f8f9fa;
+}
+
+#menu h2 {
+  font-weight: 600;
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 1.5rem;
+  margin-top: 2rem;
+}
+
+#menu h3 {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #f8b400;
+  padding-bottom: 0.5rem;
+}
+
+#menu ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+#menu ul li {
+  font-size: 1.1rem;
+  color: #555;
+  padding: 0.5rem 0.8rem;
+  border-bottom: 1px solid #e0e0e0;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+#menu ul li:last-child {
+  border-bottom: none;
+}
+
+#menu .col-md-6 {
+  margin-bottom: 2rem;
+}
+
+/* Hover Effect on Menu Items */
+#menu ul li:hover {
+  color: #f8b400;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  transform: scale(1.02);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Contact Us Section Styling */
+#contact {
+  background-color: #ffffff;
+  padding: 60px 0;
+  text-align: center;
+}
+
+#contact h2 {
+  font-size: 2.5rem;
+  color: #333;
+  font-weight: bold;
+  margin-bottom: 40px;
+  margin-top: 3rem;
+}
+
+#contact .row {
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+#contact .col-md-6 {
+  flex: 1 1 45%;
+  margin-bottom: 20px;
+}
+
+#contact .col-md-6 h3 {
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+#contact .col-md-6 p {
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+#contact .col-md-6 p a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+#contact .col-md-6 p a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive Adjustments for Contact Us */
+@media (max-width: 768px) {
+  #contact .col-md-6 {
+    flex: 1 1 100%;
+  }
+}
+
+/* Feedback Section */
+#feedback {
+  background-color: #f9f9f9;
+  padding: 50px 20px;
+}
+
+.form-container {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.form-container h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.submit-btn {
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 12px 20px;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  background-color: #f8b400;
+  border-radius: 5px;
+  transform: scale(1.02);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.submit-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive Design for Feedback Form */
+@media (max-width: 768px) {
+  .form-container {
+    padding: 15px;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    font-size: 0.9rem;
+  }
+
+  .submit-btn {
+    font-size: 0.9rem;
+    padding: 10px 15px;
+  }
+}
+
+/* Response Message Styling */
+.response-message {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+/* Submitting Message Style */
+.response-message.submitting {
+  background-color: #fff3cd;
+  color: #856404;
+  border-color: #c3e6cb;
+}
+
+.response-message.submitting h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin: 0;
+}
+
+/* Success Message Style */
+.response-message.success {
+  background-color: #d4edda;
+  color: #155724;
+  border-color: #c3e6cb;
+}
+
+.response-message.success h3 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin: 0 0 10px;
+  text-align: center;
+}
+
+.response-message.success p {
+  font-size: 1rem;
+  margin: 5px 0;
+}
+
+.response-message.success p strong {
+  font-weight: bold;
+}
+
+/* Error Message Style */
+.response-message.error {
+  background-color: #fce4e4;
+  color: #d9534f;
+  border-color: #f5c6cb;
+}
+
+.response-message.error h3 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin: 0 0 10px;
+  text-align: center;
+}
+
+.response-message.error p {
+  font-size: 1rem;
+  margin: 5px 0;
+}
+
+.response-message.error p strong {
+  font-weight: bold;
+}
+
+/* Button-style close or action for response */
+.response-message .close-btn {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 8px 16px;
+  border-radius: 5px;
+  margin-top: 15px;
+  transition: background-color 0.3s ease;
+}
+
+.response-message .close-btn:hover {
+  background-color: #45a049;
+}
+
+/* Hide response after 20 seconds */
+.response-message.hide {
+  display: none;
+}
+
+/* Footer section*/
+footer {
+  background-color: #111;
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+  font-size: 1rem;
+}
+
+footer .footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+footer .footer-links {
+  margin-top: 10px;
+}
+
+footer .footer-links a {
+  color: #f8b400;
+  text-decoration: none;
+  margin: 0 15px;
+}
+
+footer .footer-links a:hover {
+  text-decoration: underline;
+}
